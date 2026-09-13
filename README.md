@@ -60,7 +60,10 @@ partnernek nincs `offer`-e.
 ### Képek
 
 A `public/cards/` mappába kerülnek, a fájlnevek a JSON `image` mezőjéből jönnek.
-Részletek: [`public/cards/README.md`](public/cards/README.md).
+Formátum, méret és az 50 generálási prompt: [`IMAGE_PROMPTS.md`](IMAGE_PROMPTS.md).
+
+A mappa a build során egy az egyben a `dist/`-be másolódik, ezért szándékosan
+nincs benne dokumentáció — ami ide kerül, azt a világ is látja.
 
 ## Tracking
 
