@@ -6,12 +6,20 @@ Külön projekt, külön deploy — nem függ a fő SideQuest apptól, és előb
 ## Útvonal
 
 ```
-/q?v=<helyszin>
+/q/<helyszin>      ← ez megy a QR-kódokba
+/q?v=<helyszin>    ← a régi alak, továbbra is működik
 ```
 
-A `v` paraméter azonosítja, melyik matricáról jöttek. A `/` is ugyanezt az
-oldalt tölti be, szóval egy rossz rewrite sem hagyja üres képernyővel a
-felhasználót.
+Mindkettő ugyanazt csinálja: azonosítja, melyik matricáról jöttek.
+
+**Miért útvonal a kanonikus forma?** Mert a Vercel Web Analytics útvonalanként
+számol. Így a dashboard Pages paneljén magától, külön sorban látszik, melyik
+matrica hány embert hozott — custom event és fizetős csomag nélkül. Query
+paraméterrel minden scan egyetlen `/q` sorba futna össze, és nem derülne ki,
+melyik helyszín működik.
+
+A `/` is ugyanezt az oldalt tölti be, szóval egy rossz rewrite sem hagyja üres
+képernyővel a felhasználót.
 
 ## Működés
 
@@ -78,6 +86,12 @@ Célpontok, ami épp elérhető: `window.gtag` / `window.dataLayer` (ha beteszel
 GA4/GTM snippetet az `index.html`-be), és/vagy `VITE_QR_TRACK_ENDPOINT`
 (sendBeacon, JSON body) a `.env`-ből. Ha egyik sincs, csak DEV konzolra logol.
 Soha nem dob hibát és nem blokkolja a rendert.
+
+Ezen felül fut a **Vercel Web Analytics** (`<Analytics />` az `App.tsx`-ben),
+ami a scanszámot méri útvonalanként. Ez a dashboard **Analytics** fülén
+kapcsolható be. Hobby csomagon havi 50 000 esemény ingyenes, cookie-mentes
+(nem kell süti-banner), a riportablak viszont 1 hónap — hosszabb távú
+összesítéshez exportálj CSV-t a panelről, vagy válts Pro-ra.
 
 ## Futtatás
 

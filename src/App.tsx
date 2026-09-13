@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { Analytics } from "@vercel/analytics/react";
 import { Heart, X } from "lucide-react";
 import { cards, type Card } from "./lib/cards";
 import { buildDeck } from "./lib/deck";
@@ -7,11 +8,23 @@ import { CardView } from "./components/CardView";
 import { EndScreen } from "./components/EndScreen";
 import { trackInstagramClick, trackPageView } from "./lib/tracking";
 
-/** A matrica azonosítója: /q?v=<helyszin> */
+/**
+ * A matrica azonosítója. Két alak működik:
+ *  - `/q/<helyszin>` — ez a kanonikus, ezt tesszük a QR-kódokba. Azért útvonal
+ *    és nem query, mert a Vercel Web Analytics útvonalanként számol: így a
+ *    dashboardon külön sorban látszik, melyik matrica hány embert hozott,
+ *    custom event és fizetős csomag nélkül.
+ *  - `/q?v=<helyszin>` — a régi alak, visszafelé kompatibilisen megmarad.
+ */
 const readVenue = (): string | null => {
   try {
-    const value = new URLSearchParams(window.location.search).get("v");
-    return value && value.trim() ? value.trim() : null;
+    const fromPath = window.location.pathname.match(/^\/q\/([^/]+)\/?$/);
+    if (fromPath) {
+      const value = decodeURIComponent(fromPath[1]).trim();
+      if (value) return value;
+    }
+    const fromQuery = new URLSearchParams(window.location.search).get("v");
+    return fromQuery && fromQuery.trim() ? fromQuery.trim() : null;
   } catch {
     return null;
   }
@@ -140,6 +153,7 @@ export const App = () => {
           </p>
         </div>
       )}
+      <Analytics />
     </div>
   );
 };

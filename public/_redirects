@@ -1,5 +1,6 @@
-# Netlify / Cloudflare Pages: csak a /q megy az appra.
+# Netlify / Cloudflare Pages: csak a /q ága megy az appra.
 # Szándékosan NINCS mindent elkapó szabály: így a hiányzó kép rendes 404-et ad,
 # nem pedig 200-at az index.html tartalmával.
-/q   /index.html  200
-/q/  /index.html  200
+/q      /index.html  200
+/q/     /index.html  200
+/q/*    /index.html  200
