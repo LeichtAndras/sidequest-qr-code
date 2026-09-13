@@ -1,0 +1,427 @@
+{
+  "version": 1,
+  "deckSize": 12,
+  "partnersPerDeal": 2,
+  "cards": [
+    {
+      "id": "sugar-bowling",
+      "category": "partner",
+      "title": "Sugár Bowling",
+      "description": "Gurítás a haverokkal, kedvezménnyel",
+      "image": "/cards/sugar-bowling.jpg",
+      "partner": true,
+      "offer": "25% kedvezmény + egy ingyen ital",
+      "code": null
+    },
+    {
+      "id": "timeheist",
+      "category": "partner",
+      "title": "TimeHeist",
+      "description": "Szabadulószoba, 20% kedvezmény",
+      "image": "/cards/timeheist.jpg",
+      "partner": true,
+      "offer": "20% kedvezmény",
+      "code": null
+    },
+    {
+      "id": "magic-rooms",
+      "category": "partner",
+      "title": "Magic Rooms",
+      "description": "Szabadulószoba csapatban",
+      "image": "/cards/magic-rooms.jpg",
+      "partner": true,
+      "offer": "Hétköznap 25% az első foglalásodra",
+      "code": "1kvd25",
+      "codeNote": "Írd a közleménybe"
+    },
+    {
+      "id": "base-bar",
+      "category": "partner",
+      "title": "Base Bar",
+      "description": "Bár a haverokkal",
+      "image": "/cards/base-bar.jpg",
+      "partner": true,
+      "offer": "10% minden piára",
+      "code": null
+    },
+    {
+      "id": "baltadobalas",
+      "category": "partner",
+      "title": "Baltadobálás",
+      "description": "Balta a célba, jobb program mint hangzik",
+      "image": "/cards/baltadobalas.jpg",
+      "partner": true,
+      "offer": "10% kedvezmény",
+      "code": null
+    },
+    {
+      "id": "sugarmozi",
+      "category": "partner",
+      "title": "SugárMozi",
+      "description": "Mozi kedvezménnyel",
+      "image": "/cards/sugarmozi.jpg",
+      "partner": true,
+      "offer": "20% kedvezmény",
+      "code": null
+    },
+    {
+      "id": "szelfimuzeum",
+      "category": "partner",
+      "title": "Szelfimúzeum",
+      "description": "Interaktív fotós helyszín",
+      "image": "/cards/szelfimuzeum.jpg",
+      "partner": true,
+      "offer": "15% kedvezmény",
+      "code": null
+    },
+    {
+      "id": "leonoria-kvizbox",
+      "category": "partner",
+      "title": "Leonoria Kvízbox",
+      "description": "Kvízdoboz csapatban",
+      "image": "/cards/leonoria-kvizbox.jpg",
+      "partner": true,
+      "offer": "10% kedvezmény",
+      "code": null
+    },
+    {
+      "id": "pixity",
+      "category": "partner",
+      "title": "Pixity",
+      "description": "Online kód: sidequest10",
+      "image": "/cards/pixity.jpg",
+      "partner": true,
+      "offer": "10% online",
+      "code": "sidequest10",
+      "codeNote": "Kuponkód a pénztárnál"
+    },
+    {
+      "id": "szureti-fesztivalok",
+      "category": "osz",
+      "title": "Szüreti fesztiválok",
+      "description": "Szeptember vége, több városrészben",
+      "image": "/cards/szureti-fesztivalok.jpg",
+      "partner": false
+    },
+    {
+      "id": "oszi-gellerthegy",
+      "category": "osz",
+      "title": "Őszi Gellérthegy",
+      "description": "Korábban van naplemente, nem kell 9-ig várni",
+      "image": "/cards/oszi-gellerthegy.jpg",
+      "partner": false
+    },
+    {
+      "id": "utolso-szabadteri-mozis-estek",
+      "category": "osz",
+      "title": "Utolsó szabadtéri mozis esték",
+      "description": "Szeptemberben még mennek egyes helyszínek",
+      "image": "/cards/utolso-szabadteri-mozis-estek.jpg",
+      "partner": false
+    },
+    {
+      "id": "termalfurdo-huvos-esten",
+      "category": "osz",
+      "title": "Termálfürdő hűvös estén",
+      "description": "Ősszel jobb mint nyáron, kevesebben vannak",
+      "image": "/cards/termalfurdo-huvos-esten.jpg",
+      "partner": false
+    },
+    {
+      "id": "muzeumi-oszi-nyitoszezon",
+      "category": "osz",
+      "title": "Múzeumi őszi nyitószezon",
+      "description": "Ilyenkor indulnak az új kiállítások",
+      "image": "/cards/muzeumi-oszi-nyitoszezon.jpg",
+      "partner": false
+    },
+    {
+      "id": "oszi-piknik-takaroval",
+      "category": "osz",
+      "title": "Őszi piknik takaróval",
+      "description": "Termosz, pléd, Tabán",
+      "image": "/cards/oszi-piknik-takaroval.jpg",
+      "partner": false
+    },
+    {
+      "id": "kabatszezon-nyito-second-hand-kor",
+      "category": "osz",
+      "title": "Kabátszezon-nyitó second hand kör",
+      "description": "Októberben cserélődik a kínálat",
+      "image": "/cards/kabatszezon-nyito-second-hand-kor.jpg",
+      "partner": false
+    },
+    {
+      "id": "filozofusok-kertje",
+      "category": "ingyenes",
+      "title": "Filozófusok kertje",
+      "description": "Szoborcsoport a Gellérthegy oldalában, alig jár arra valaki",
+      "image": "/cards/filozofusok-kertje.jpg",
+      "partner": false
+    },
+    {
+      "id": "kopaszi-gat",
+      "category": "ingyenes",
+      "title": "Kopaszi-gát",
+      "description": "Vízparti séta, füves rész",
+      "image": "/cards/kopaszi-gat.jpg",
+      "partner": false
+    },
+    {
+      "id": "romai-part",
+      "category": "ingyenes",
+      "title": "Római-part",
+      "description": "Duna-parti hangulat, biciklivel jó",
+      "image": "/cards/romai-part.jpg",
+      "partner": false
+    },
+    {
+      "id": "karolyi-kert",
+      "category": "ingyenes",
+      "title": "Károlyi-kert",
+      "description": "Belvárosi zárt kert, tömeg nélkül",
+      "image": "/cards/karolyi-kert.jpg",
+      "partner": false
+    },
+    {
+      "id": "vajdahunyad-vara-udvara",
+      "category": "ingyenes",
+      "title": "Vajdahunyad vára udvara",
+      "description": "Belépő nélkül bejárható rész",
+      "image": "/cards/vajdahunyad-vara-udvara.jpg",
+      "partner": false
+    },
+    {
+      "id": "rozsadombi-kilatopontok",
+      "category": "ingyenes",
+      "title": "Rózsadombi kilátópontok",
+      "description": "Utcákon sétálva is látszik a város",
+      "image": "/cards/rozsadombi-kilatopontok.jpg",
+      "partner": false
+    },
+    {
+      "id": "libego-a-janos-hegyre",
+      "category": "program",
+      "title": "Libegő a János-hegyre",
+      "description": "Rövid, olcsó, jó kilátás",
+      "image": "/cards/libego-a-janos-hegyre.jpg",
+      "partner": false
+    },
+    {
+      "id": "tarsasjatek-bar",
+      "category": "program",
+      "title": "Társasjáték bár",
+      "description": "Egy délután, sok játék",
+      "image": "/cards/tarsasjatek-bar.jpg",
+      "partner": false
+    },
+    {
+      "id": "kalandpark-kotelpalya",
+      "category": "program",
+      "title": "Kalandpark, kötélpálya",
+      "description": "Városon kívül, de vonattal elérhető",
+      "image": "/cards/kalandpark-kotelpalya.jpg",
+      "partner": false
+    },
+    {
+      "id": "bolhapiac-hetvegen",
+      "category": "program",
+      "title": "Bolhapiac hétvégén",
+      "description": "Vásárolni nem kötelező",
+      "image": "/cards/bolhapiac-hetvegen.jpg",
+      "partner": false
+    },
+    {
+      "id": "second-hand-korut",
+      "category": "program",
+      "title": "Second hand körút",
+      "description": "Több bolt egy délután",
+      "image": "/cards/second-hand-korut.jpg",
+      "partner": false
+    },
+    {
+      "id": "naplementes-hajozas",
+      "category": "program",
+      "title": "Naplementés hajózás",
+      "description": "Van olcsó verzió is",
+      "image": "/cards/naplementes-hajozas.jpg",
+      "partner": false
+    },
+    {
+      "id": "bicikli-a-duna-menten",
+      "category": "program",
+      "title": "Bicikli a Duna mentén",
+      "description": "Egészen a városhatárig el lehet menni",
+      "image": "/cards/bicikli-a-duna-menten.jpg",
+      "partner": false
+    },
+    {
+      "id": "szinhaz-diakjeggyel",
+      "category": "program",
+      "title": "Színház diákjeggyel",
+      "description": "Utolsó pillanatos jegyek olcsón",
+      "image": "/cards/szinhaz-diakjeggyel.jpg",
+      "partner": false
+    },
+    {
+      "id": "standup-este",
+      "category": "program",
+      "title": "Standup este",
+      "description": "Kis helyszíneken olcsó a belépő",
+      "image": "/cards/standup-este.jpg",
+      "partner": false
+    },
+    {
+      "id": "koncert-kis-klubban",
+      "category": "program",
+      "title": "Koncert kis klubban",
+      "description": "Ismeretlen zenekar, alacsony jegyár",
+      "image": "/cards/koncert-kis-klubban.jpg",
+      "partner": false
+    },
+    {
+      "id": "ejszakai-seta-a-varban",
+      "category": "program",
+      "title": "Éjszakai séta a Várban",
+      "description": "Éjfél után teljesen üres",
+      "image": "/cards/ejszakai-seta-a-varban.jpg",
+      "partner": false
+    },
+    {
+      "id": "36-kerdes",
+      "category": "jatek",
+      "title": "36 kérdés",
+      "description": "Kérdéslista ami állítólag közelebb hoz",
+      "image": "/cards/36-kerdes.jpg",
+      "partner": false
+    },
+    {
+      "id": "valassz-helyettem",
+      "category": "jatek",
+      "title": "Válassz helyettem",
+      "description": "A másik rendel neked. Bármit.",
+      "image": "/cards/valassz-helyettem.jpg",
+      "partner": false
+    },
+    {
+      "id": "idegen-fotos",
+      "category": "jatek",
+      "title": "Idegen fotós",
+      "description": "Kértek valakit hogy fotózzon le titeket. Nem selfie.",
+      "image": "/cards/idegen-fotos.jpg",
+      "partner": false
+    },
+    {
+      "id": "buszos-rulett",
+      "category": "jatek",
+      "title": "Buszos rulett",
+      "description": "Felszálltok egy buszra, a harmadik megállónál leszálltok",
+      "image": "/cards/buszos-rulett.jpg",
+      "partner": false
+    },
+    {
+      "id": "playlist-csere",
+      "category": "jatek",
+      "title": "Playlist csere",
+      "description": "Átadjátok a telefont, egy dalt tesztek fel egymásnak",
+      "image": "/cards/playlist-csere.jpg",
+      "partner": false
+    },
+    {
+      "id": "melyik-ablak",
+      "category": "jatek",
+      "title": "Melyik ablak?",
+      "description": "Kiválasztotok egy házat és kitaláljátok ki lakik ott",
+      "image": "/cards/melyik-ablak.jpg",
+      "partner": false
+    },
+    {
+      "id": "a-kedvenc-helyed",
+      "category": "jatek",
+      "title": "A kedvenc helyed",
+      "description": "Elviszed oda ahova egyedül szoktál járni",
+      "image": "/cards/a-kedvenc-helyed.jpg",
+      "partner": false
+    },
+    {
+      "id": "terkep-nelkuli-hazaut",
+      "category": "jatek",
+      "title": "Térkép nélküli hazaút",
+      "description": "Telefon zsebbe, gyalog",
+      "image": "/cards/terkep-nelkuli-hazaut.jpg",
+      "partner": false
+    },
+    {
+      "id": "filmmaraton-egy-temara",
+      "category": "otthon",
+      "title": "Filmmaraton egy témára",
+      "description": "Három film, egy rendező vagy egy évtized",
+      "image": "/cards/filmmaraton-egy-temara.jpg",
+      "partner": false
+    },
+    {
+      "id": "rossz-filmek-esteje",
+      "category": "otthon",
+      "title": "Rossz filmek estéje",
+      "description": "Minél rosszabb, annál jobb",
+      "image": "/cards/rossz-filmek-esteje.jpg",
+      "partner": false
+    },
+    {
+      "id": "kozos-fozes-recept-nelkul",
+      "category": "otthon",
+      "title": "Közös főzés recept nélkül",
+      "description": "Ami a hűtőben van",
+      "image": "/cards/kozos-fozes-recept-nelkul.jpg",
+      "partner": false
+    },
+    {
+      "id": "sutis-kihivas",
+      "category": "otthon",
+      "title": "Sütis kihívás",
+      "description": "Ketten ugyanazt sütitek, valaki más pontoz",
+      "image": "/cards/sutis-kihivas.jpg",
+      "partner": false
+    },
+    {
+      "id": "playlist-epites-kozosen",
+      "category": "otthon",
+      "title": "Playlist-építés közösen",
+      "description": "Egy lista, mindenki 5 dallal",
+      "image": "/cards/playlist-epites-kozosen.jpg",
+      "partner": false
+    },
+    {
+      "id": "regi-fotok-atnezese",
+      "category": "otthon",
+      "title": "Régi fotók átnézése",
+      "description": "Meglepően jó program",
+      "image": "/cards/regi-fotok-atnezese.jpg",
+      "partner": false
+    },
+    {
+      "id": "rajzverseny",
+      "category": "otthon",
+      "title": "Rajzverseny",
+      "description": "Mindenki lerajzolja a másikat 5 perc alatt",
+      "image": "/cards/rajzverseny.jpg",
+      "partner": false
+    },
+    {
+      "id": "telefonmentes-este",
+      "category": "otthon",
+      "title": "Telefonmentes este",
+      "description": "Fogadás rá, este 9 után",
+      "image": "/cards/telefonmentes-este.jpg",
+      "partner": false
+    },
+    {
+      "id": "csillagnezes-a-hegyen",
+      "category": "otthon",
+      "title": "Csillagnézés a hegyen",
+      "description": "Éjszaka, meleg ruha, semmi más",
+      "image": "/cards/csillagnezes-a-hegyen.jpg",
+      "partner": false
+    }
+  ]
+}

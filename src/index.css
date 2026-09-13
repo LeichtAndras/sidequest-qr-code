@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #48c0ff;
+  --color-secondary: #a5e1ff;
+  --color-ink: #1a2b3c;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply font-sans text-gray-900 bg-[#F7F7F7] antialiased;
+    /* A swipe gesztus ne görgesse a lapot mobilon. */
+    overscroll-behavior-y: contain;
+  }
+}
