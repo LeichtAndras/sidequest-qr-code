@@ -88,8 +88,14 @@ npm run preview
 
 ## Deploy
 
-A build egy statikus `dist/` mappa. Egyetlen követelmény: a hosztnak minden
+A build egy statikus `dist/` mappa. Egyetlen követelmény: a hosztnak a `/q`
 útvonalra az `index.html`-t kell adnia, hogy a `/q?v=...` betöltsön.
+
+A rewrite szándékosan **csak** a `/q`-ra vonatkozik, nem mindenre. Mindent elkapó
+szabállyal a hiányzó képek 200-as státusszal, az index.html tartalmával térnének
+vissza 404 helyett — az oldal ettől még működne (placeholderre vált), de egy
+elgépelt képfájlnév örökre észrevétlen maradna, és minden hiányzó kép egy teljes
+HTML oldalt töltene le feleslegesen.
 
 - **Vercel** — [`vercel.json`](vercel.json) már tartalmazza a rewrite-ot és a
   cache fejléceket. `vercel --prod`

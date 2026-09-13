@@ -1,3 +1,5 @@
-# Netlify / Cloudflare Pages: minden útvonal az SPA-ra megy,
-# hogy a /q?v=... is betöltsön.
-/*  /index.html  200
+# Netlify / Cloudflare Pages: csak a /q megy az appra.
+# Szándékosan NINCS mindent elkapó szabály: így a hiányzó kép rendes 404-et ad,
+# nem pedig 200-at az index.html tartalmával.
+/q   /index.html  200
+/q/  /index.html  200
