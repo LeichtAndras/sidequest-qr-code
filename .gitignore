@@ -5,3 +5,8 @@ dist
 .env
 .env.*
 !.env.example
+
+# Az @upstash/redis telepítője generálja (agent dokumentáció), nem projektkód
+.agents
+.claude
+skills-lock.json
