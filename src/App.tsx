@@ -10,6 +10,7 @@ import { trackInstagramClick, trackPageView } from "./lib/tracking";
 import {
   flushSession,
   markCompleted,
+  markInstagramClicked,
   recordDecision,
   startSession,
   watchSessionEnd,
@@ -112,6 +113,7 @@ export const App = () => {
 
   const handleInstagramClick = useCallback(() => {
     trackInstagramClick(venue, saved.length);
+    markInstagramClicked();
   }, [venue, saved.length]);
 
   const current = deck[index];

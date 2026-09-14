@@ -30,6 +30,7 @@ type Session = {
   deckSize: number;
   decisions: Decision[];
   completed: boolean;
+  instagramClicked: boolean;
 };
 
 let session: Session | null = null;
@@ -54,6 +55,7 @@ export const startSession = (venue: string | null, deckSize: number) => {
     deckSize,
     decisions: [],
     completed: false,
+    instagramClicked: false,
   };
   lastSent = "";
   lastCardShownAt = Date.now();
@@ -76,6 +78,16 @@ export const markCompleted = () => {
   if (session) session.completed = true;
 };
 
+/**
+ * Az Instagram-gomb megnyomása. Azonnal küldünk is: a gomb új fülre nyit,
+ * szóval a `visibilitychange` nem feltétlenül sül el ezen a lapon.
+ */
+export const markInstagramClicked = () => {
+  if (!session) return;
+  session.instagramClicked = true;
+  flushSession();
+};
+
 const payload = () =>
   session && {
     id: session.id,
@@ -83,6 +95,7 @@ const payload = () =>
     startedAt: session.startedAt,
     endedAt: Date.now(),
     completed: session.completed,
+    instagramClicked: session.instagramClicked,
     deckSize: session.deckSize,
     decisions: session.decisions,
   };
@@ -98,6 +111,7 @@ export const flushSession = () => {
   const signature = JSON.stringify([
     data.id,
     data.completed,
+    data.instagramClicked,
     data.decisions.length,
   ]);
   if (signature === lastSent) return;

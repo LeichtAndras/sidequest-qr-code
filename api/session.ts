@@ -49,6 +49,7 @@ export type SessionRecord = {
   startedAt: number;
   endedAt: number;
   completed: boolean;
+  instagramClicked: boolean;
   deckSize: number;
   stoppedAt: number;
   savedCount: number;
@@ -96,6 +97,7 @@ export const normalize = (input: unknown): SessionRecord | null => {
     startedAt: num(raw.startedAt),
     endedAt: num(raw.endedAt),
     completed,
+    instagramClicked: raw.instagramClicked === true,
     deckSize,
     // Hányadik kártyánál állt meg, 1-alapon. Végigmenetnél a pakli mérete.
     stoppedAt: completed

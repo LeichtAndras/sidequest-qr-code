@@ -99,7 +99,12 @@ Menetenként **egy** rekord kerül Upstash Redisbe (`sq:sessions` hash, kulcs a
 menet azonosítója). Nem swipe-onként írunk — egy menet egy hálózati kérés.
 
 A rekord: menet-azonosító, matrica kódja, kezdés/zárás, végigment-e, hányadik
-kártyánál állt meg, és kártyánként az irány + mennyi ideig nézte.
+kártyánál állt meg, kattintott-e az Instagram-gombra, és kártyánként az irány
++ mennyi ideig nézte.
+
+Az Instagram-kattintás azért itt van és nem a Vercel Analyticsben, mert ott
+custom event kellene hozzá, ami Pro csomagtól jár — a saját rekordban ingyen
+mérhető.
 
 **Mikor megy ki:** a végképernyőn, vagy amikor a lap háttérbe kerül
 (`visibilitychange` → hidden). Mobilon ez az egyetlen megbízható jel — a
@@ -121,9 +126,10 @@ npx vercel env pull .env.local
 npm run report
 ```
 
-Kiírja a menetszámot és a végigmenési arányt, matrica-változatonként (`a`/`b`)
-külön, az 5 legtöbbször mentett és az 5 leggyakrabban eldobott kártyát, és hogy
-hányadik kártyánál morzsolódnak le az emberek.
+Kiírja a menetszámot, a végigmenési arányt és az Instagram-kattintásokat,
+matrica-változatonként (`a`/`b`) külön, az 5 legtöbbször mentett és az 5
+leggyakrabban eldobott kártyát, és hogy hányadik kártyánál morzsolódnak le
+az emberek.
 
 A kártyánkénti arány csak legalább 5 megjelenés felett jelenik meg — kevés
 adatnál a százalék félrevezető.

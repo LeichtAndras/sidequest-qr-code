@@ -76,17 +76,20 @@ const bump = (id, key) => {
 
 let completed = 0;
 let decisionsTotal = 0;
+let igClicks = 0;
 const dropAt = new Map(); // hányadik kártyánál álltak meg (csak félbehagyók)
 const byVariant = new Map(); // matrica kód -> { menetek, vegigment }
 
 for (const s of sessions) {
   if (s.completed) completed += 1;
+  if (s.instagramClicked) igClicks += 1;
   decisionsTotal += s.decisions?.length ?? 0;
 
   const v = s.v ?? "(nincs)";
-  const stat = byVariant.get(v) ?? { menetek: 0, vegigment: 0, dontesek: 0 };
+  const stat = byVariant.get(v) ?? { menetek: 0, vegigment: 0, dontesek: 0, ig: 0 };
   stat.menetek += 1;
   if (s.completed) stat.vegigment += 1;
+  if (s.instagramClicked) stat.ig += 1;
   stat.dontesek += s.decisions?.length ?? 0;
   byVariant.set(v, stat);
 
@@ -129,6 +132,11 @@ console.log(
 );
 console.log(`  Átlagosan:      ${avgCards} kártya / menet`);
 console.log(`  Összes döntés:  ${decisionsTotal}`);
+// A gomb csak a végképernyőn létezik, ezért az oda eljutottakhoz mérjük.
+console.log(
+  `  Instagram:      ${igClicks} kattintás ` +
+    `(a végigmenők ${pct(igClicks, completed)}%-a, minden menet ${pct(igClicks, sessions.length)}%-a)`
+);
 
 if (byVariant.size > 1) {
   line();
@@ -138,7 +146,8 @@ if (byVariant.size > 1) {
     console.log(
       `  ${pad(v, 16)} ${String(s.menetek).padStart(4)} menet   ` +
         `végigment ${String(pct(s.vegigment, s.menetek)).padStart(3)}%   ` +
-        `átlag ${(s.dontesek / s.menetek).toFixed(1)} kártya`
+        `átlag ${(s.dontesek / s.menetek).toFixed(1)} kártya   ` +
+        `IG ${String(s.ig).padStart(3)}`
     );
   }
 }
