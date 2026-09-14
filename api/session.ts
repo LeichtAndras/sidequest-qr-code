@@ -9,14 +9,29 @@ import { Redis } from "@upstash/redis";
  */
 
 /** A Vercel Marketplace integráció többféle néven injektálhatja ugyanazt. */
-const url =
-  process.env.UPSTASH_REDIS_REST_URL ??
-  process.env.KV_REST_API_URL ??
-  process.env.REDIS_REST_URL;
-const token =
-  process.env.UPSTASH_REDIS_REST_TOKEN ??
-  process.env.KV_REST_API_TOKEN ??
-  process.env.REDIS_REST_TOKEN;
+const URL_NEVEK = [
+  "UPSTASH_REDIS_REST_URL",
+  "KV_REST_API_URL",
+  "REDIS_REST_URL",
+  "STORAGE_REST_API_URL",
+] as const;
+const TOKEN_NEVEK = [
+  "UPSTASH_REDIS_REST_TOKEN",
+  "KV_REST_API_TOKEN",
+  "REDIS_REST_TOKEN",
+  "STORAGE_REST_API_TOKEN",
+] as const;
+
+const elso = (nevek: readonly string[]): string | undefined => {
+  for (const nev of nevek) {
+    const ertek = process.env[nev];
+    if (ertek) return ertek;
+  }
+  return undefined;
+};
+
+const url = elso(URL_NEVEK);
+const token = elso(TOKEN_NEVEK);
 
 export const SESSIONS_KEY = "sq:sessions";
 
@@ -97,8 +112,22 @@ export default {
       return new Response("Method Not Allowed", { status: 405 });
     }
     if (!url || !token) {
+      // Szándékosan NEM 204: a néma siker itt a legrosszabb kimenetel — az
+      // adat sehova nem megy, és senki nem veszi észre. A válasz csak
+      // változóNEVEKET sorol fel, értéket soha.
       console.error("[session] hiányzó Upstash env változók");
-      return new Response(null, { status: 204 });
+      return new Response(
+        JSON.stringify({
+          error: "storage_not_configured",
+          keresett_url_nevek: URL_NEVEK,
+          keresett_token_nevek: TOKEN_NEVEK,
+          talalt: [...URL_NEVEK, ...TOKEN_NEVEK].filter((n) => Boolean(process.env[n])),
+          upstash_kezdetu_valtozok: Object.keys(process.env).filter((k) =>
+            /UPSTASH|REDIS|^KV_/i.test(k)
+          ),
+        }),
+        { status: 503, headers: { "Content-Type": "application/json" } }
+      );
     }
 
     let body: string;
