@@ -7,6 +7,13 @@ import { buildDeck } from "./lib/deck";
 import { CardView } from "./components/CardView";
 import { EndScreen } from "./components/EndScreen";
 import { trackInstagramClick, trackPageView } from "./lib/tracking";
+import {
+  flushSession,
+  markCompleted,
+  recordDecision,
+  startSession,
+  watchSessionEnd,
+} from "./lib/session";
 
 /** Ennyi kártyával előre töltjük a képeket. */
 const PRELOAD_AHEAD = 2;
@@ -51,6 +58,13 @@ export const App = () => {
     trackPageView(venue, deck.length);
   }, [venue, deck.length]);
 
+  // Minden új paklihoz új menet tartozik.
+  useEffect(() => {
+    startSession(venue, deck.length);
+  }, [venue, deck]);
+
+  useEffect(() => watchSessionEnd(), []);
+
   /**
    * A soron következő kártyák képének előtöltése, amíg az aktuálisat nézik.
    * Enélkül minden swipe után csak akkor indul el a letöltés, amikor a kártya
@@ -71,8 +85,17 @@ export const App = () => {
 
   const advance = useCallback(() => setIndex((prev) => prev + 1), []);
 
+  const handleSwipeLeft = useCallback(
+    (card: Card) => {
+      recordDecision(card.id, "skip");
+      advance();
+    },
+    [advance]
+  );
+
   const handleSwipeRight = useCallback(
     (card: Card) => {
+      recordDecision(card.id, "save");
       setSaved((prev) =>
         prev.some((item) => item.id === card.id) ? prev : [...prev, card]
       );
@@ -94,6 +117,14 @@ export const App = () => {
   const current = deck[index];
   const next = deck[index + 1];
   const isFinished = index >= deck.length;
+
+  // A végképernyő elérése lezárja és elküldi a menetet. Aki félbehagyja, azt a
+  // watchSessionEnd kapja el — így mindkét kimenetel pontosan egy rekord.
+  useEffect(() => {
+    if (!isFinished || deck.length === 0) return;
+    markCompleted();
+    flushSession();
+  }, [isFinished, deck.length]);
 
   return (
     <div className="flex min-h-[100svh] flex-col bg-[#F7F7F7] text-[#1A2B3C]">
@@ -142,7 +173,7 @@ export const App = () => {
                     isTop
                     eager={index < 2}
                     onSwipeRight={() => handleSwipeRight(current)}
-                    onSwipeLeft={advance}
+                    onSwipeLeft={() => handleSwipeLeft(current)}
                   />
                 </motion.div>
               )}
@@ -154,7 +185,7 @@ export const App = () => {
             <button
               type="button"
               aria-label="Tovább"
-              onClick={advance}
+              onClick={() => current && handleSwipeLeft(current)}
               className="flex h-14 w-14 items-center justify-center rounded-full border border-gray-100 bg-white text-rose-500 shadow-lg transition-transform active:scale-90"
             >
               <X size={26} />

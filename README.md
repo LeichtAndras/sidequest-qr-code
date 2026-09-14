@@ -93,6 +93,41 @@ kapcsolható be. Hobby csomagon havi 50 000 esemény ingyenes, cookie-mentes
 (nem kell süti-banner), a riportablak viszont 1 hónap — hosszabb távú
 összesítéshez exportálj CSV-t a panelről, vagy válts Pro-ra.
 
+## Swipe-adatok
+
+Menetenként **egy** rekord kerül Upstash Redisbe (`sq:sessions` hash, kulcs a
+menet azonosítója). Nem swipe-onként írunk — egy menet egy hálózati kérés.
+
+A rekord: menet-azonosító, matrica kódja, kezdés/zárás, végigment-e, hányadik
+kártyánál állt meg, és kártyánként az irány + mennyi ideig nézte.
+
+**Mikor megy ki:** a végképernyőn, vagy amikor a lap háttérbe kerül
+(`visibilitychange` → hidden). Mobilon ez az egyetlen megbízható jel — a
+`beforeunload` telefonon rendszeresen elmarad. Ha valaki app-ot vált, majd
+visszajön és végigcsinálja, a rekord újra kimegy **ugyanazzal az
+azonosítóval**, és a hash felülírja: egy menetből sosem lesz két rekord.
+
+Nem kapjuk el: kényszerített app-bezárás, lemerült telefon, hálózat nélküli
+eltűnés. Best effort adat, nem könyvelés.
+
+Adatvédelem: a menet-azonosító véletlen és csak a memóriában él. Nincs süti,
+nincs személyes adat, nincs eszközök közti összekapcsolás.
+
+### Jelentés
+
+```bash
+npx vercel link              # egyszer, ha még nincs .vercel mappa
+npx vercel env pull .env.local
+npm run report
+```
+
+Kiírja a menetszámot és a végigmenési arányt, matrica-változatonként (`a`/`b`)
+külön, az 5 legtöbbször mentett és az 5 leggyakrabban eldobott kártyát, és hogy
+hányadik kártyánál morzsolódnak le az emberek.
+
+A kártyánkénti arány csak legalább 5 megjelenés felett jelenik meg — kevés
+adatnál a százalék félrevezető.
+
 ## Futtatás
 
 ```bash
