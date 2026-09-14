@@ -2,11 +2,14 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Analytics } from "@vercel/analytics/react";
 import { Heart, X } from "lucide-react";
-import { cards, type Card } from "./lib/cards";
+import { cardImageSrc, cards, type Card } from "./lib/cards";
 import { buildDeck } from "./lib/deck";
 import { CardView } from "./components/CardView";
 import { EndScreen } from "./components/EndScreen";
 import { trackInstagramClick, trackPageView } from "./lib/tracking";
+
+/** Ennyi kártyával előre töltjük a képeket. */
+const PRELOAD_AHEAD = 2;
 
 /**
  * A matrica azonosítója. Két alak működik:
@@ -47,6 +50,24 @@ export const App = () => {
   useEffect(() => {
     trackPageView(venue, deck.length);
   }, [venue, deck.length]);
+
+  /**
+   * A soron következő kártyák képének előtöltése, amíg az aktuálisat nézik.
+   * Enélkül minden swipe után csak akkor indul el a letöltés, amikor a kártya
+   * már látszik — jó wifin észrevehetetlen, mobilneten kártyánként egy pislogás.
+   * Fire-and-forget: nincs takarítás, mert az megszakítaná a félig letöltött
+   * képet pont akkor, amikor gyorsan pörgetik a paklit.
+   */
+  useEffect(() => {
+    deck
+      .slice(index + 1, index + 1 + PRELOAD_AHEAD)
+      .map((card) => cardImageSrc(card.image))
+      .filter((src): src is string => src !== null)
+      .forEach((src) => {
+        const image = new Image();
+        image.src = src;
+      });
+  }, [deck, index]);
 
   const advance = useCallback(() => setIndex((prev) => prev + 1), []);
 

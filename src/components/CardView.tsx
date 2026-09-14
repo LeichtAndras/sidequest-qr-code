@@ -67,6 +67,7 @@ export const CardView = ({
                 alt={card.title}
                 className="absolute inset-0 h-full w-full object-cover pointer-events-none"
                 loading={eager ? "eager" : "lazy"}
+                fetchPriority={eager ? "high" : "auto"}
                 decoding="async"
                 draggable={false}
                 onError={onImgError}
